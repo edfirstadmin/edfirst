@@ -159,7 +159,7 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
               <div className="flex items-center space-x-2 mb-4 md:mb-0">
                 <p className="text-white/80">
-                  © 2024 Ed-fIRST. All rights reserved.
+                  © 2025 Ed-fIRST. All rights reserved.
                 </p>
               </div>
               
