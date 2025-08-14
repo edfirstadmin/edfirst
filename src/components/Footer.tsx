@@ -129,31 +129,10 @@ const Footer = () => {
                   <p className="text-white/90 font-medium">Address</p>
                   <p className="text-white/80 leading-relaxed">
                     212, Tower 2, DLF Corporate Greens,<br />
-                    Sector 74, Gurgaon
+                    Sector 74, Gurgaon 122004
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Newsletter Signup */}
-        <div className="border-t border-white/20 py-8">
-          <div className="text-center">
-            <h4 className="text-xl font-semibold mb-4">Stay Updated</h4>
-            <p className="text-white/80 mb-6 max-w-2xl mx-auto">
-              Subscribe to our newsletter for the latest updates on educational innovation, 
-              AI-driven learning solutions, and upcoming programs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-accent"
-              />
-              <Button variant="accent" className="px-8">
-                Subscribe
-              </Button>
             </div>
           </div>
         </div>

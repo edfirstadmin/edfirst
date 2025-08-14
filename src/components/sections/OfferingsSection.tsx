@@ -35,7 +35,7 @@ const OfferingsSection = () => {
       description: "Extensive professional development initiatives that integrate AI tools with foundational literacy and numeracy skills training, designed to enhance educator capabilities across all educational levels.",
       features: [
         "AI-integrated training modules",
-        "Foundation literacy & numeracy focus",
+        "Foundational Literacy & Numeracy focus",
         "Continuous professional growth",
         "Modern pedagogical approaches"
       ]
@@ -110,11 +110,11 @@ const OfferingsSection = () => {
               <p>
                 Education can enrich lives by raising and fulfilling aspirations. Overhauling schools especially 
                 in impoverished and underserved neighbourhoods and reaching out to every child with commitment 
-                to provide good education ultimately pays off.
+                to provide good education ultimately pays off. A close look at the history of education system around the world provide examples of the transformative impact of education. For eg. Japan and Singapore
               </p>
               
               <p>
-                Education when delivered has multifaceted benefits for economies. For a student, education promises 
+                Education when delivered will has multifaceted benefits for economies. For a student, education promises 
                 employment, earnings and health. It raises self-esteem, belief in oneself and opens new horizons. 
                 For society it drives innovation, strengthens institutions and fosters social cohesion.
               </p>

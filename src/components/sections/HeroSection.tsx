@@ -32,15 +32,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button 
-                variant="hero" 
-                size="lg" 
-                onClick={() => onSectionChange("about")}
-                className="group"
-              >
-                Learn More
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </Button>
+              {/* Removed Learn More button */}
               <Button 
                 variant="outline" 
                 size="lg" 
@@ -58,13 +50,13 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
                   <BookOpen className="w-6 h-6 text-accent" />
                 </div>
                 <p className="text-2xl font-bold text-white">500+</p>
-                <p className="text-white/80 text-sm">Programs</p>
+                <p className="text-white/80 text-sm">Programs + Projects</p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <Users className="w-6 h-6 text-secondary" />
                 </div>
-                <p className="text-2xl font-bold text-white">10K+</p>
+                <p className="text-2xl font-bold text-white">60K+</p>
                 <p className="text-white/80 text-sm">Educators</p>
               </div>
               <div className="text-center">
@@ -83,18 +75,18 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-medium">
-                    <h3 className="text-white font-semibold mb-2">Foundation Literacy</h3>
-                    <p className="text-white/80 text-sm">Building strong basic skills for lifelong learning</p>
+                    <h3 className="text-white font-semibold mb-2">Foundational Literacy</h3>
+                    <p className="text-white/80 text-sm">Building strong basic skills</p>
                   </div>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-medium">
                     <h3 className="text-white font-semibold mb-2">AI Integration</h3>
-                    <p className="text-white/80 text-sm">Cutting-edge tools for modern education</p>
+                    <p className="text-white/80 text-sm">Cutting-edge tools to enhance teaching learning in the classroom</p>
                   </div>
                 </div>
                 <div className="space-y-4 mt-8">
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-medium">
                     <h3 className="text-white font-semibold mb-2">Equity Focus</h3>
-                    <p className="text-white/80 text-sm">Inclusive, high-quality learning for all</p>
+                    <p className="text-white/80 text-sm">Inclusive, high-quality education for all</p>
                   </div>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-medium">
                     <h3 className="text-white font-semibold mb-2">Teacher Training</h3>

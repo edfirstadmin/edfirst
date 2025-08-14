@@ -31,10 +31,7 @@ const AboutSection = () => {
                 <div>
                   <h3 className="text-2xl font-bold text-primary mb-4">Who We Are</h3>
                   <p className="text-lg text-foreground leading-relaxed">
-                    As an independent leader in advancing academic excellence across school and higher education, 
-                    Ed-fIRST is dedicated to empowering educators, leaders, and learners from preschool to beyond. 
-                    Through targeted teacher capacity-building programs, we strengthen skills in Foundation Literacy 
-                    Numeracy, formative and summative assessments, curriculum design, and innovative pedagogy.
+                    Ed- fIRST as an independent leader in advancing academic excellence across school and higher education, is dedicated to empowering educators, leaders, and learners from preschool to beyond. Through targeted teacher capacity-building programs, we strengthen skills in Foundational Literacy, Numeracy, higher order thinking skills, problem solving skills, formative and summative assessments, curriculum design, and innovative pedagogy.
                   </p>
                   <p className="text-lg text-foreground leading-relaxed mt-4">
                     Committed to addressing gender and equity challenges, we integrate cutting-edge interventions, 
@@ -62,10 +59,7 @@ const AboutSection = () => {
                 <h3 className="text-2xl font-bold text-secondary">Our Vision</h3>
               </div>
               <p className="text-lg text-foreground leading-relaxed">
-                Advancing Education through AI-Driven Innovation across School and higher education. 
-                Our vision focuses on nurturing each learner and redefining knowledge frameworks to 
-                promote lifelong learning and sustainable, equitable outcomes, both in school education, 
-                Higher education and beyond.
+                Advancing Education through AI-Driven Innovation across School and higher education. Our vision focuses on nurturing each learner and redefining knowledge frameworks to promote lifelong learning and integrate sustainable, equitable outcomes, both in school and Higher education.
               </p>
             </CardContent>
           </Card>
@@ -80,7 +74,7 @@ const AboutSection = () => {
                 <h3 className="text-2xl font-bold text-primary">Our Mission</h3>
               </div>
               <p className="text-lg text-foreground leading-relaxed">
-                Ed-first aims to transform education by driving innovation in curriculum, assessment, 
+                Ed-first aims to transform education by driving innovation in curriculum designEffective Pedagogical Practices at Preparatory Level, assessment, 
                 and pedagogy, powered by artificial intelligence. Committed to excellence and equity, 
                 we at Ed-first strive to nurture the whole child and reimagine school systems for 
                 lasting and meaningful impact.

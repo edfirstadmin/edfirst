@@ -15,7 +15,7 @@ const WorkSection = () => {
           description: "Comprehensive workshops focused on improving teaching methodologies and assessment strategies"
         },
         {
-          name: "Effective Pedagogical Practices in Primary Classes",
+          name: "Effective Pedagogical Practices in Preparatory Classes",
           description: "Specialized training conducted at N.P. Boys Sr. Sec. School, Mandir Marg, New Delhi"
         },
         {
@@ -26,12 +26,12 @@ const WorkSection = () => {
       ]
     },
     {
-      title: "Master Training Programs", 
+      title: "Hub and Spoke ‘Mentoring the Mentor’", 
       icon: Award,
       color: "secondary",
       items: [
         {
-          name: "Master Trainer Workshop on Achieving Learning Outcomes in Primary Classes",
+          name: "Master Trainer Workshop on Achieving Learning Outcomes at Preparatory and Middle Level",
           image: "/lovable-uploads/108ebe96-ca48-4854-bd44-03c1ce3d208e.png",
           description: "Advanced training for education leaders and master trainers"
         },
@@ -73,7 +73,7 @@ const WorkSection = () => {
           description: "Comprehensive educational materials supporting curriculum objectives"
         },
         {
-          name: "Bilingual Books", 
+          name: "Bilingual Books/ Multilingual Books", 
           description: "Multi-language educational resources promoting inclusive learning"
         }
       ]
@@ -162,7 +162,7 @@ const WorkSection = () => {
               <h3 className="text-3xl font-bold text-white mb-6">Join Our Educational Journey</h3>
               <p className="text-white/90 text-lg mb-8 leading-relaxed">
                 Discover how our comprehensive programs and innovative resources can transform 
-                educational outcomes in your institution. Let's work together to create lasting impact.
+                educational outcomes in your institution. Let us work together to raise better schools and create lasting impact.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button variant="accent" size="lg" className="group">

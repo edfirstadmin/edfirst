@@ -21,7 +21,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: "Address",
-      detail: "212, Tower 2, DLF Corporate Greens, Sector 74, Gurgaon",
+      detail: "212, Tower 2, DLF Corporate Greens, Sector 74, Gurgaon 122004",
       action: null
     }
   ];
@@ -244,9 +244,6 @@ const ContactSection = () => {
                 your educational goals with innovative, AI-driven solutions.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button variant="accent" size="lg">
-                  Schedule a Consultation
-                </Button>
                 <Button variant="outline" size="lg" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
                   Download Our Brochure
                 </Button>

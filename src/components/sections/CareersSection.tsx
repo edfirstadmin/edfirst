@@ -7,20 +7,10 @@ const CareersSection = () => {
     "Competitive compensation packages",
     "Professional development opportunities", 
     "Work with cutting-edge AI educational technologies",
-    "Flexible work arrangements",
-    "Health and wellness benefits",
     "Make meaningful impact in education"
   ];
 
   const openPositions = [
-    {
-      title: "Senior Educational Consultant",
-      department: "Programs & Training",
-      type: "Full-time",
-      location: "Gurgaon / Remote",
-      description: "Lead curriculum development and teacher training programs with focus on AI integration",
-      requirements: ["M.Ed or equivalent", "5+ years experience", "AI/EdTech knowledge preferred"]
-    },
     {
       title: "AI Learning Specialist", 
       department: "Technology",
@@ -28,14 +18,6 @@ const CareersSection = () => {
       location: "Gurgaon",
       description: "Develop and implement AI-driven educational tools and assessment frameworks",
       requirements: ["Computer Science/AI background", "Educational technology experience", "Python/ML skills"]
-    },
-    {
-      title: "Content Development Manager",
-      department: "Publications",
-      type: "Full-time",
-      location: "Remote",
-      description: "Oversee creation of supplementary books and digital educational resources",
-      requirements: ["Publishing experience", "Educational content expertise", "Project management skills"]
     },
     {
       title: "Research Associate",
