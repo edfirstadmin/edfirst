@@ -1,6 +1,17 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, Award, Target, FileText, Languages } from "lucide-react";
+import { useState } from "react";
+
+const supplementaryImages = [
+  "/lovable-uploads/191a6a71-b3f4-4a0c-9054-320c59dacd8e.png",
+  "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png",
+];
+
+const bilingualImages = [
+  "/lovable-uploads/ed426868-d309-4bcf-a37f-a4f4e6ab601c.png",
+  "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png"
+];
 
 const WorkSection = () => {
   const workCategories = [
@@ -90,6 +101,8 @@ const WorkSection = () => {
     }
   };
 
+  const [galleryOpen, setGalleryOpen] = useState<null | "supplementary" | "bilingual">(null);
+
   return (
     <section id="work" className="py-20 bg-gradient-to-br from-accent-light/5 to-primary-light/5">
       <div className="container mx-auto px-4 lg:px-8">
@@ -139,7 +152,22 @@ const WorkSection = () => {
                         
                         {/* Content */}
                         <div className="space-y-3">
-                          <h4 className="text-lg font-bold text-primary leading-tight">
+                          <h4
+                            className={`text-lg font-bold text-primary leading-tight ${
+                              category.title === "Publications" &&
+                              (item.name === "Supplementary Books" || item.name === "Bilingual Books/ Multilingual Books")
+                                ? "cursor-pointer hover:underline"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              if (category.title === "Publications" && item.name === "Supplementary Books") {
+                                setGalleryOpen("supplementary");
+                              }
+                              if (category.title === "Publications" && item.name === "Bilingual Books/ Multilingual Books") {
+                                setGalleryOpen("bilingual");
+                              }
+                            }}
+                          >
                             {item.name}
                           </h4>
                           <p className="text-muted-foreground leading-relaxed">
@@ -178,6 +206,64 @@ const WorkSection = () => {
           </Card>
         </div>
       </div>
+
+      {/* Supplementary Books Gallery Modal */}
+      {galleryOpen === "supplementary" && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative">
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setGalleryOpen(null)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Supplementary Books Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {supplementaryImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow">
+                  <img
+                    src={src}
+                    alt={`Supplementary Book ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bilingual/Multilingual Books Gallery Modal */}
+      {galleryOpen === "bilingual" && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative">
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setGalleryOpen(null)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Bilingual/Multilingual Books Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {bilingualImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow">
+                  <img
+                    src={src}
+                    alt={`Bilingual/Multilingual Book ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
