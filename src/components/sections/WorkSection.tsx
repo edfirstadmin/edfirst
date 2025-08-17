@@ -13,6 +13,29 @@ const bilingualImages = [
   "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png"
 ];
 
+const awarenessImages = [
+  "/lovable-uploads/awareness/awareness_1.png",
+  "/lovable-uploads/awareness/awareness_2.png",
+  "/lovable-uploads/awareness/awareness_3.png",
+  "/lovable-uploads/awareness/awareness_4.png",
+  "/lovable-uploads/awareness/awareness_5.png",
+  "/lovable-uploads/awareness/awareness_6.png",
+  "/lovable-uploads/awareness/awareness_7.png", 
+  "/lovable-uploads/awareness/awareness_8.png",
+  "/lovable-uploads/awareness/awareness_9.png",
+  "/lovable-uploads/awareness/awareness_10.png",
+  "/lovable-uploads/awareness/awareness_11.png",
+  "/lovable-uploads/awareness/awareness_12.png",
+  "/lovable-uploads/awareness/awareness_13.png",
+  "/lovable-uploads/awareness/awareness_14.png",
+  "/lovable-uploads/awareness/awareness_15.png",
+  "/lovable-uploads/awareness/awareness_16.png",
+  "/lovable-uploads/awareness/awareness_17.png",
+  "/lovable-uploads/awareness/awareness_18.png",
+  "/lovable-uploads/awareness/awareness_19.png",
+  "/lovable-uploads/awareness/awareness_20.png"
+];
+
 const lecImages = [
   "/lovable-uploads/LEC_1.png",
   "/lovable-uploads/LEC_2.png",
@@ -109,6 +132,10 @@ const WorkSection = () => {
 
   const [galleryOpen, setGalleryOpen] = useState<null | "supplementary" | "bilingual">(null);
   const [lecGalleryOpen, setLecGalleryOpen] = useState(false);
+  const [awarenessGalleryOpen, setAwarenessGalleryOpen] = useState(false);
+
+  // For full image modal
+  const [fullImageSrc, setFullImageSrc] = useState<string | null>(null);
 
   return (
     <section id="work" className="py-20 bg-gradient-to-br from-accent-light/5 to-primary-light/5">
@@ -141,7 +168,35 @@ const WorkSection = () => {
                 {/* Category Items */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {category.items.map((item, itemIndex) => {
-                    // Special handling for "Training on the Use of Learning Enhancement Cards"
+                    // Awareness Raising Workshop gallery
+                    if (
+                      category.title === "Training Workshops" &&
+                      item.name === "Awareness Raising Workshop on Effective Pedagogical and Assessment Practices"
+                    ) {
+                      return (
+                        <div key={itemIndex} className="shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br from-primary/20 to-primary-light/30 hover:scale-105 group rounded-lg p-6 flex flex-col items-center">
+                          <div
+                            className="mb-4 overflow-hidden rounded-lg cursor-pointer w-full"
+                            onClick={() => setAwarenessGalleryOpen(true)}
+                          >
+                            <img
+                              src={awarenessImages[0]}
+                              alt="Awareness Raising Workshop"
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <div className="space-y-3 text-center">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    // LEC gallery
                     if (
                       category.title === "Hub and Spoke ‘Mentoring the Mentor’" &&
                       item.name === "Training on the Use of Learning Enhancement Cards"
@@ -227,10 +282,80 @@ const WorkSection = () => {
         </div>
       </div>
 
+      {/* Awareness Gallery Modal */}
+      {awarenessGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div
+            className="bg-white rounded-lg p-6 max-w-3xl w-full relative"
+            style={{
+              maxHeight: "80vh",
+              overflowY: "auto"
+            }}
+          >
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setAwarenessGalleryOpen(false)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Awareness Raising Workshop Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {awarenessImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
+                  <img
+                    src={src}
+                    alt={`Awareness Workshop ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* LEC Image Gallery Modal */}
+      {lecGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div
+            className="bg-white rounded-lg p-6 max-w-3xl w-full relative"
+            style={{
+              maxHeight: "80vh",
+              overflowY: "auto"
+            }}
+          >
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setLecGalleryOpen(false)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Learning Enhancement Cards Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {lecImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
+                  <img
+                    src={src}
+                    alt={`LEC ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Supplementary Books Gallery Modal */}
       {galleryOpen === "supplementary" && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative">
+          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative" style={{ maxHeight: "80vh", overflowY: "auto" }}>
             <button
               className="absolute top-2 right-2 text-black text-xl font-bold"
               onClick={() => setGalleryOpen(null)}
@@ -241,7 +366,7 @@ const WorkSection = () => {
             <h2 className="text-xl font-semibold mb-4 text-center">Supplementary Books Gallery</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {supplementaryImages.map((src, idx) => (
-                <div key={idx} className="rounded overflow-hidden shadow">
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
                   <img
                     src={src}
                     alt={`Supplementary Book ${idx + 1}`}
@@ -259,7 +384,7 @@ const WorkSection = () => {
       {/* Bilingual/Multilingual Books Gallery Modal */}
       {galleryOpen === "bilingual" && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative">
+          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative" style={{ maxHeight: "80vh", overflowY: "auto" }}>
             <button
               className="absolute top-2 right-2 text-black text-xl font-bold"
               onClick={() => setGalleryOpen(null)}
@@ -270,7 +395,7 @@ const WorkSection = () => {
             <h2 className="text-xl font-semibold mb-4 text-center">Bilingual/Multilingual Books Gallery</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {bilingualImages.map((src, idx) => (
-                <div key={idx} className="rounded overflow-hidden shadow">
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
                   <img
                     src={src}
                     alt={`Bilingual/Multilingual Book ${idx + 1}`}
@@ -285,31 +410,22 @@ const WorkSection = () => {
         </div>
       )}
 
-      {/* LEC Image Gallery Modal */}
-      {lecGalleryOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative">
+      {/* Full Image Modal */}
+      {fullImageSrc && (
+        <div className="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center">
+          <div className="relative max-w-4xl w-full flex items-center justify-center">
             <button
-              className="absolute top-2 right-2 text-black text-xl font-bold"
-              onClick={() => setLecGalleryOpen(false)}
-              aria-label="Close Gallery"
+              className="absolute top-4 right-4 text-white text-3xl font-bold"
+              onClick={() => setFullImageSrc(null)}
+              aria-label="Close Full Image"
             >
               ×
             </button>
-            <h2 className="text-xl font-semibold mb-4 text-center">Learning Enhancement Cards Gallery</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {lecImages.map((src, idx) => (
-                <div key={idx} className="rounded overflow-hidden shadow">
-                  <img
-                    src={src}
-                    alt={`LEC ${idx + 1}`}
-                    width={200}
-                    height={250}
-                    className="object-cover w-full h-48"
-                  />
-                </div>
-              ))}
-            </div>
+            <img
+              src={fullImageSrc}
+              alt="Full"
+              className="max-h-[90vh] max-w-full rounded-lg shadow-2xl"
+            />
           </div>
         </div>
       )}
