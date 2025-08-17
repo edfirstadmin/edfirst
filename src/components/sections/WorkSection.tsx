@@ -76,6 +76,22 @@ const pedagogicalImages = [
   "/lovable-uploads/pedagogical/pedagogical_30.png"
 ];
 
+const trainingImages = [
+  "/lovable-uploads/training/training_1.png",
+  "/lovable-uploads/training/training_2.png",
+  "/lovable-uploads/training/training_3.png",
+  "/lovable-uploads/training/training_4.png",
+  "/lovable-uploads/training/training_5.png",
+  "/lovable-uploads/training/training_6.png",
+  "/lovable-uploads/training/training_7.png",
+  "/lovable-uploads/training/training_8.png",
+  "/lovable-uploads/training/training_9.png",
+  "/lovable-uploads/training/training_10.png",
+  "/lovable-uploads/training/training_11.png",
+  "/lovable-uploads/training/training_12.png",
+  "/lovable-uploads/training/training_13.png"
+];
+
 const WorkSection = () => {
   const workCategories = [
     {
@@ -168,6 +184,7 @@ const WorkSection = () => {
   const [lecGalleryOpen, setLecGalleryOpen] = useState(false);
   const [awarenessGalleryOpen, setAwarenessGalleryOpen] = useState(false);
   const [pedagogicalGalleryOpen, setPedagogicalGalleryOpen] = useState(false);
+  const [trainingGalleryOpen, setTrainingGalleryOpen] = useState(false);
 
   // For full image modal
   const [fullImageSrc, setFullImageSrc] = useState<string | null>(null);
@@ -245,6 +262,34 @@ const WorkSection = () => {
                             <img
                               src={pedagogicalImages[0]}
                               alt="Effective Pedagogical Practices"
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <div className="space-y-3 text-center">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    // In-Service Teacher Training gallery
+                    if (
+                      category.title === "Training Workshops" &&
+                      item.name === "In-Service Teacher Training for Secondary Classes"
+                    ) {
+                      return (
+                        <div key={itemIndex} className="shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br from-primary/20 to-primary-light/30 hover:scale-105 group rounded-lg p-6 flex flex-col items-center">
+                          <div
+                            className="mb-4 overflow-hidden rounded-lg cursor-pointer w-full"
+                            onClick={() => setTrainingGalleryOpen(true)}
+                          >
+                            <img
+                              src={trainingImages[0]}
+                              alt="In-Service Teacher Training"
                               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           </div>
@@ -497,6 +542,41 @@ const WorkSection = () => {
                   <img
                     src={src}
                     alt={`Bilingual/Multilingual Book ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Training Gallery Modal */}
+      {trainingGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div
+            className="bg-white rounded-lg p-6 max-w-3xl w-full relative"
+            style={{
+              maxHeight: "80vh",
+              overflowY: "auto"
+            }}
+          >
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setTrainingGalleryOpen(false)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">In-Service Teacher Training Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {trainingImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
+                  <img
+                    src={src}
+                    alt={`Training ${idx + 1}`}
                     width={200}
                     height={250}
                     className="object-cover w-full h-48"
