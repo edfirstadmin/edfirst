@@ -42,6 +42,40 @@ const lecImages = [
   "/lovable-uploads/LEC_3.png"
 ];
 
+// Add pedagogical images array
+const pedagogicalImages = [
+  "/lovable-uploads/pedagogical/pedagogical_1.png",
+  "/lovable-uploads/pedagogical/pedagogical_2.png",
+  "/lovable-uploads/pedagogical/pedagogical_3.png",
+  "/lovable-uploads/pedagogical/pedagogical_4.png",
+  "/lovable-uploads/pedagogical/pedagogical_5.png",
+  "/lovable-uploads/pedagogical/pedagogical_6.png",
+  "/lovable-uploads/pedagogical/pedagogical_7.png",
+  "/lovable-uploads/pedagogical/pedagogical_8.png",
+  "/lovable-uploads/pedagogical/pedagogical_9.png", 
+  "/lovable-uploads/pedagogical/pedagogical_10.png",
+  "/lovable-uploads/pedagogical/pedagogical_11.png", 
+  "/lovable-uploads/pedagogical/pedagogical_12.png",
+  "/lovable-uploads/pedagogical/pedagogical_13.png",
+  "/lovable-uploads/pedagogical/pedagogical_14.png",
+  "/lovable-uploads/pedagogical/pedagogical_15.png",
+  "/lovable-uploads/pedagogical/pedagogical_16.png",
+  "/lovable-uploads/pedagogical/pedagogical_17.png",
+  "/lovable-uploads/pedagogical/pedagogical_18.png",
+  "/lovable-uploads/pedagogical/pedagogical_19.png",
+  "/lovable-uploads/pedagogical/pedagogical_20.png",
+  "/lovable-uploads/pedagogical/pedagogical_21.png",
+  "/lovable-uploads/pedagogical/pedagogical_22.png",
+  "/lovable-uploads/pedagogical/pedagogical_23.png",
+  "/lovable-uploads/pedagogical/pedagogical_24.png",
+  "/lovable-uploads/pedagogical/pedagogical_25.png",
+  "/lovable-uploads/pedagogical/pedagogical_26.png",
+  "/lovable-uploads/pedagogical/pedagogical_27.png",
+  "/lovable-uploads/pedagogical/pedagogical_28.png",
+  "/lovable-uploads/pedagogical/pedagogical_29.png",
+  "/lovable-uploads/pedagogical/pedagogical_30.png"
+];
+
 const WorkSection = () => {
   const workCategories = [
     {
@@ -133,6 +167,7 @@ const WorkSection = () => {
   const [galleryOpen, setGalleryOpen] = useState<null | "supplementary" | "bilingual">(null);
   const [lecGalleryOpen, setLecGalleryOpen] = useState(false);
   const [awarenessGalleryOpen, setAwarenessGalleryOpen] = useState(false);
+  const [pedagogicalGalleryOpen, setPedagogicalGalleryOpen] = useState(false);
 
   // For full image modal
   const [fullImageSrc, setFullImageSrc] = useState<string | null>(null);
@@ -182,6 +217,34 @@ const WorkSection = () => {
                             <img
                               src={awarenessImages[0]}
                               alt="Awareness Raising Workshop"
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <div className="space-y-3 text-center">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    // Pedagogical Practices gallery
+                    if (
+                      category.title === "Training Workshops" &&
+                      item.name === "Effective Pedagogical Practices in Preparatory Classes"
+                    ) {
+                      return (
+                        <div key={itemIndex} className="shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br from-primary/20 to-primary-light/30 hover:scale-105 group rounded-lg p-6 flex flex-col items-center">
+                          <div
+                            className="mb-4 overflow-hidden rounded-lg cursor-pointer w-full"
+                            onClick={() => setPedagogicalGalleryOpen(true)}
+                          >
+                            <img
+                              src={pedagogicalImages[0]}
+                              alt="Effective Pedagogical Practices"
                               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           </div>
@@ -306,6 +369,41 @@ const WorkSection = () => {
                   <img
                     src={src}
                     alt={`Awareness Workshop ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pedagogical Gallery Modal */}
+      {pedagogicalGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div
+            className="bg-white rounded-lg p-6 max-w-3xl w-full relative"
+            style={{
+              maxHeight: "80vh",
+              overflowY: "auto"
+            }}
+          >
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setPedagogicalGalleryOpen(false)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Effective Pedagogical Practices Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {pedagogicalImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
+                  <img
+                    src={src}
+                    alt={`Pedagogical Practice ${idx + 1}`}
                     width={200}
                     height={250}
                     className="object-cover w-full h-48"
