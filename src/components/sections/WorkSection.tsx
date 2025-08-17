@@ -13,6 +13,12 @@ const bilingualImages = [
   "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png"
 ];
 
+const lecImages = [
+  "/lovable-uploads/LEC_1.png",
+  "/lovable-uploads/LEC_2.png",
+  "/lovable-uploads/LEC_3.png"
+];
+
 const WorkSection = () => {
   const workCategories = [
     {
@@ -102,6 +108,7 @@ const WorkSection = () => {
   };
 
   const [galleryOpen, setGalleryOpen] = useState<null | "supplementary" | "bilingual">(null);
+  const [lecGalleryOpen, setLecGalleryOpen] = useState(false);
 
   return (
     <section id="work" className="py-20 bg-gradient-to-br from-accent-light/5 to-primary-light/5">
@@ -133,50 +140,63 @@ const WorkSection = () => {
 
                 {/* Category Items */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {category.items.map((item, itemIndex) => (
-                    <Card 
-                      key={itemIndex}
-                      className={`shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br ${getColorClasses(category.color)} hover:scale-105 group`}
-                    >
-                      <CardContent className="p-6">
-                        {/* Image if available */}
-                        {item.image && (
-                          <div className="mb-4 overflow-hidden rounded-lg">
-                            <img 
-                              src={item.image}
-                              alt={item.name}
+                  {category.items.map((item, itemIndex) => {
+                    // Special handling for "Training on the Use of Learning Enhancement Cards"
+                    if (
+                      category.title === "Hub and Spoke ‘Mentoring the Mentor’" &&
+                      item.name === "Training on the Use of Learning Enhancement Cards"
+                    ) {
+                      return (
+                        <div key={itemIndex} className="shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br from-secondary/20 to-secondary-light/30 hover:scale-105 group rounded-lg p-6 flex flex-col items-center">
+                          <div
+                            className="mb-4 overflow-hidden rounded-lg cursor-pointer w-full"
+                            onClick={() => setLecGalleryOpen(true)}
+                          >
+                            <img
+                              src={lecImages[0]}
+                              alt="Learning Enhancement Card"
                               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           </div>
-                        )}
-                        
-                        {/* Content */}
-                        <div className="space-y-3">
-                          <h4
-                            className={`text-lg font-bold text-primary leading-tight ${
-                              category.title === "Publications" &&
-                              (item.name === "Supplementary Books" || item.name === "Bilingual Books/ Multilingual Books")
-                                ? "cursor-pointer hover:underline"
-                                : ""
-                            }`}
-                            onClick={() => {
-                              if (category.title === "Publications" && item.name === "Supplementary Books") {
-                                setGalleryOpen("supplementary");
-                              }
-                              if (category.title === "Publications" && item.name === "Bilingual Books/ Multilingual Books") {
-                                setGalleryOpen("bilingual");
-                              }
-                            }}
-                          >
-                            {item.name}
-                          </h4>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {item.description}
-                          </p>
+                          <div className="space-y-3 text-center">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
                         </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                      );
+                    }
+                    // Default rendering for other items
+                    return (
+                      <Card
+                        key={itemIndex}
+                        className={`shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br ${getColorClasses(category.color)} hover:scale-105 group`}
+                      >
+                        <CardContent className="p-6">
+                          {item.image && (
+                            <div className="mb-4 overflow-hidden rounded-lg">
+                              <img
+                                src={item.image}
+                                alt={item.name}
+                                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
+                          )}
+                          <div className="space-y-3">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
               </div>
             );
@@ -254,6 +274,35 @@ const WorkSection = () => {
                   <img
                     src={src}
                     alt={`Bilingual/Multilingual Book ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* LEC Image Gallery Modal */}
+      {lecGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative">
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setLecGalleryOpen(false)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Learning Enhancement Cards Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {lecImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow">
+                  <img
+                    src={src}
+                    alt={`LEC ${idx + 1}`}
                     width={200}
                     height={250}
                     className="object-cover w-full h-48"
