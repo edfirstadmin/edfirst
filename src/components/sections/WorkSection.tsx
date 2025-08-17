@@ -110,6 +110,19 @@ const trainerImages = [
   "/lovable-uploads/trainer/trainer_9.png"
 ];
 
+const bilingualGalleryImages = [
+  "/lovable-uploads/bilingual_books/bb1.png",
+  "/lovable-uploads/bilingual_books/bb2.png",
+  "/lovable-uploads/bilingual_books/bb3.png"
+];
+
+const supplementaryBooksGalleryImages = [
+  "/lovable-uploads/supplementary_books/sb1.png",
+  "/lovable-uploads/supplementary_books/sb2.png",
+  "/lovable-uploads/supplementary_books/sb3.png"
+  // Add more images as needed
+];
+
 const WorkSection = () => {
   const workCategories = [
     {
@@ -204,6 +217,8 @@ const WorkSection = () => {
   const [pedagogicalGalleryOpen, setPedagogicalGalleryOpen] = useState(false);
   const [trainingGalleryOpen, setTrainingGalleryOpen] = useState(false);
   const [trainerGalleryOpen, setTrainerGalleryOpen] = useState(false);
+  const [bilingualGalleryOpen, setBilingualGalleryOpen] = useState(false);
+  const [supplementaryBooksGalleryOpen, setSupplementaryBooksGalleryOpen] = useState(false);
 
   // For full image modal
   const [fullImageSrc, setFullImageSrc] = useState<string | null>(null);
@@ -365,6 +380,62 @@ const WorkSection = () => {
                             <img
                               src={lecImages[0]}
                               alt="Learning Enhancement Card"
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <div className="space-y-3 text-center">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    // Supplementary Books gallery
+                    if (
+                      category.title === "Publications" &&
+                      item.name === "Supplementary Books"
+                    ) {
+                      return (
+                        <div key={itemIndex} className="shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br from-primary/20 to-primary-light/30 hover:scale-105 group rounded-lg p-6 flex flex-col items-center">
+                          <div
+                            className="mb-4 overflow-hidden rounded-lg cursor-pointer w-full"
+                            onClick={() => setSupplementaryBooksGalleryOpen(true)}
+                          >
+                            <img
+                              src={supplementaryBooksGalleryImages[0]}
+                              alt="Supplementary Book"
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <div className="space-y-3 text-center">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    // Bilingual Books/Multilingual Books gallery
+                    if (
+                      category.title === "Publications" &&
+                      item.name === "Bilingual Books/ Multilingual Books"
+                    ) {
+                      return (
+                        <div key={itemIndex} className="shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br from-primary/20 to-primary-light/30 hover:scale-105 group rounded-lg p-6 flex flex-col items-center">
+                          <div
+                            className="mb-4 overflow-hidden rounded-lg cursor-pointer w-full"
+                            onClick={() => setBilingualGalleryOpen(true)}
+                          >
+                            <img
+                              src={bilingualGalleryImages[0]}
+                              alt="Bilingual/Multilingual Book"
                               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           </div>
@@ -543,19 +614,25 @@ const WorkSection = () => {
       )}
 
       {/* Supplementary Books Gallery Modal */}
-      {galleryOpen === "supplementary" && (
+      {supplementaryBooksGalleryOpen && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full relative" style={{ maxHeight: "80vh", overflowY: "auto" }}>
+          <div
+            className="bg-white rounded-lg p-6 max-w-3xl w-full relative"
+            style={{
+              maxHeight: "80vh",
+              overflowY: "auto"
+            }}
+          >
             <button
               className="absolute top-2 right-2 text-black text-xl font-bold"
-              onClick={() => setGalleryOpen(null)}
+              onClick={() => setSupplementaryBooksGalleryOpen(false)}
               aria-label="Close Gallery"
             >
               ×
             </button>
             <h2 className="text-xl font-semibold mb-4 text-center">Supplementary Books Gallery</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {supplementaryImages.map((src, idx) => (
+              {supplementaryBooksGalleryImages.map((src, idx) => (
                 <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
                   <img
                     src={src}
@@ -659,6 +736,41 @@ const WorkSection = () => {
                   <img
                     src={src}
                     alt={`Trainer Workshop ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bilingual Books/Multilingual Books Gallery Modal */}
+      {bilingualGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div
+            className="bg-white rounded-lg p-6 max-w-3xl w-full relative"
+            style={{
+              maxHeight: "80vh",
+              overflowY: "auto"
+            }}
+          >
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setBilingualGalleryOpen(false)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Bilingual/Multilingual Books Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {bilingualGalleryImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
+                  <img
+                    src={src}
+                    alt={`Bilingual/Multilingual Book ${idx + 1}`}
                     width={200}
                     height={250}
                     className="object-cover w-full h-48"
