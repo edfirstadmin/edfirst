@@ -37,9 +37,15 @@ const awarenessImages = [
 ];
 
 const lecImages = [
-  "/lovable-uploads/LEC_1.png",
-  "/lovable-uploads/LEC_2.png",
-  "/lovable-uploads/LEC_3.png"
+  "/lovable-uploads/lec/lec_7.png",
+  "/lovable-uploads/lec/lec_8.png",
+  "/lovable-uploads/lec/lec_9.png",
+  "/lovable-uploads/lec/lec_1.png",
+  "/lovable-uploads/lec/lec_2.png",
+  "/lovable-uploads/lec/lec_3.png",
+  "/lovable-uploads/lec/lec_4.png",
+  "/lovable-uploads/lec/lec_5.png",
+  "/lovable-uploads/lec/lec_6.png",
 ];
 
 // Add pedagogical images array
@@ -90,6 +96,18 @@ const trainingImages = [
   "/lovable-uploads/training/training_11.png",
   "/lovable-uploads/training/training_12.png",
   "/lovable-uploads/training/training_13.png"
+];
+
+const trainerImages = [
+  "/lovable-uploads/trainer/trainer_1.png",
+  "/lovable-uploads/trainer/trainer_2.png",
+  "/lovable-uploads/trainer/trainer_3.png", 
+  "/lovable-uploads/trainer/trainer_4.png",
+  "/lovable-uploads/trainer/trainer_5.png",
+  "/lovable-uploads/trainer/trainer_6.png",
+  "/lovable-uploads/trainer/trainer_7.png",
+  "/lovable-uploads/trainer/trainer_8.png",
+  "/lovable-uploads/trainer/trainer_9.png"
 ];
 
 const WorkSection = () => {
@@ -185,6 +203,7 @@ const WorkSection = () => {
   const [awarenessGalleryOpen, setAwarenessGalleryOpen] = useState(false);
   const [pedagogicalGalleryOpen, setPedagogicalGalleryOpen] = useState(false);
   const [trainingGalleryOpen, setTrainingGalleryOpen] = useState(false);
+  const [trainerGalleryOpen, setTrainerGalleryOpen] = useState(false);
 
   // For full image modal
   const [fullImageSrc, setFullImageSrc] = useState<string | null>(null);
@@ -290,6 +309,34 @@ const WorkSection = () => {
                             <img
                               src={trainingImages[0]}
                               alt="In-Service Teacher Training"
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <div className="space-y-3 text-center">
+                            <h4 className="text-lg font-bold text-primary leading-tight">
+                              {item.name}
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    // Master Trainer Workshop gallery
+                    if (
+                      category.title === "Hub and Spoke ‘Mentoring the Mentor’" &&
+                      item.name === "Master Trainer Workshop on Achieving Learning Outcomes at Preparatory and Middle Level"
+                    ) {
+                      return (
+                        <div key={itemIndex} className="shadow-medium hover:shadow-strong transition-all duration-300 border-0 bg-gradient-to-br from-secondary/20 to-secondary-light/30 hover:scale-105 group rounded-lg p-6 flex flex-col items-center">
+                          <div
+                            className="mb-4 overflow-hidden rounded-lg cursor-pointer w-full"
+                            onClick={() => setTrainerGalleryOpen(true)}
+                          >
+                            <img
+                              src={trainerImages[0]}
+                              alt="Master Trainer Workshop"
                               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           </div>
@@ -577,6 +624,41 @@ const WorkSection = () => {
                   <img
                     src={src}
                     alt={`Training ${idx + 1}`}
+                    width={200}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Trainer Gallery Modal */}
+      {trainerGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <div
+            className="bg-white rounded-lg p-6 max-w-3xl w-full relative"
+            style={{
+              maxHeight: "80vh",
+              overflowY: "auto"
+            }}
+          >
+            <button
+              className="absolute top-2 right-2 text-black text-xl font-bold"
+              onClick={() => setTrainerGalleryOpen(false)}
+              aria-label="Close Gallery"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">Master Trainer Workshop Gallery</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {trainerImages.map((src, idx) => (
+                <div key={idx} className="rounded overflow-hidden shadow cursor-pointer" onClick={() => setFullImageSrc(src)}>
+                  <img
+                    src={src}
+                    alt={`Trainer Workshop ${idx + 1}`}
                     width={200}
                     height={250}
                     className="object-cover w-full h-48"
