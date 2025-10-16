@@ -24,7 +24,7 @@ const AdvisorySection = () => {
     {
       name: "Danny Bharat",
       image: "/lovable-uploads/danny-bharat.png",
-      description: "Danny Bharat, Founder & President of Arkimetrix Analytics and VP of Planning Analytics at Collectiv, is a CPA, CMA specializing in turning data into actionable insights using Power BI, Python, and advanced analytics. He leads strategy in FP&A, business intelligence, and machine learning, and is known for enabling teams to make smarter, faster decisions",
+      description: "Danny Bharat, Founder & President of Arkimetrix Analytics, brings three decades of CFO and senior finance leadership across organizations ranging from global Fortune 500 companies to high-growth enterprises. A graduate of IIT BHU (Biochemical Engineering) with an MBA from Ivey School of Business, Danny has held senior finance roles at PepsiCo, Wolseley, and other leading organizations spanning manufacturing, distribution, and services sectors. He is known for driving financial transformation, operational excellence, and strategic growth initiatives that bridge finance, operations, and executive leadership.",
       icon: GraduationCap
     },
     {
