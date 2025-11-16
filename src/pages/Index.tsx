@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
@@ -9,6 +9,7 @@ import OfferingsSection from "@/components/sections/OfferingsSection";
 import SupportSection from "@/components/sections/SupportSection";
 import CareersSection from "@/components/sections/CareersSection";
 import ContactSection from "@/components/sections/ContactSection";
+import chatUrl from "@/ai/subnexai.html?url";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -29,6 +30,20 @@ const Index = () => {
     }
   };
 
+  useEffect(() => {
+    const iframe = document.getElementById('subnexai-iframe') as HTMLIFrameElement | null;
+    let baseHeight = 140;
+    if (iframe) baseHeight = Math.round(iframe.getBoundingClientRect().height);
+    const maxHeight = baseHeight * 3;
+    const onMessage = (event: MessageEvent) => {
+      if (!event.data || event.data.type !== 'subnexai:resize') return;
+      if (!iframe) return;
+      const desired = Math.max(baseHeight, Math.min(event.data.height, maxHeight));
+      iframe.style.height = desired + 'px';
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <Header activeSection={activeSection} onSectionChange={handleSectionChange} />
@@ -45,6 +60,15 @@ const Index = () => {
       </main>
       
       <Footer />
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+        <iframe
+          id="subnexai-iframe"
+          src={chatUrl}
+          title="SubNexAI"
+          className="w-[880px] rounded-lg shadow-xl border border-gray-200 bg-white"
+          style={{ height: "180px", transition: "height 0.2s ease" }}
+        />
+      </div>
     </div>
   );
 };

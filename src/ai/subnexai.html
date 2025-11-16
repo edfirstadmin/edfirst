@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubNexAI</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 16px 8px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .card h2 {
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #0a0a0a;
+        }
+
+        .drop-zone {
+            border: 2px dashed #d4d4d4;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fafafa;
+        }
+
+        .drop-zone:hover {
+            border-color: #0a0a0a;
+            background: #f5f5f5;
+        }
+
+        .drop-zone p {
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-item {
+            padding: 12px;
+            background: #fafafa;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-name {
+            font-size: 0.85em;
+            font-weight: 500;
+            word-break: break-word;
+            flex: 1;
+        }
+
+        .file-size {
+            font-size: 0.75em;
+            color: #999;
+        }
+
+        .btn-delete {
+            padding: 6px 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .chat-box {
+            height: 60px;
+            overflow: hidden;
+            padding: 6px;
+            background: transparent;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .message {
+            margin-bottom: 16px;
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message-content {
+            display: inline-block;
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .message.user .message-content {
+            background: #0a0a0a;
+            color: white;
+        }
+
+        .message.assistant .message-content {
+            background: white;
+            color: #1a1a1a;
+            border: 1px solid #e5e5e5;
+        }
+
+        /* Streaming cursor effect */
+        .message.streaming .message-content::after {
+            content: '▋';
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .message-content p {
+            margin: 0 0 8px 0;
+        }
+
+        .message-content p:last-child {
+            margin: 0;
+        }
+
+        .message-content ul,
+        .message-content ol {
+            margin: 8px 0 8px 20px;
+        }
+
+        .message-content code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .message-content pre {
+            background: #1a1a1a;
+            color: #f5f5f5;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: #666;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
+
+        .chat-input-row {
+            position: fixed;
+            left: 8px;
+            right: 8px;
+            bottom: 28px;
+            display: flex;
+            gap: 12px;
+            background: #ffffff;
+            z-index: 50;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid #d4d4d4;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #0a0a0a;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #0a0a0a;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #1a1a1a;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .streaming-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #0a0a0a;
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .powered-by {
+            position: fixed;
+            right: 12px;
+            bottom: 6px;
+            font-size: 0.8em;
+            color: #666;
+            z-index: 40;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+
+            <div class="chat-box" id="chatBox">
+                <div class="empty-state">Explore more about EdfIRST? - Ask SubNexAI !</div>
+            </div>
+            <div class="chat-input-row">
+                <input type="text" id="chatInput" placeholder="Ask me anything about EdfIRST...">
+                <button class="btn btn-primary" id="sendBtn">Send</button>
+            </div>
+            <div class="powered-by">Powered by SubNexAI</div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const inputRow = document.querySelector('.chat-input-row');
+        const poweredBy = document.querySelector('.powered-by');
+        document.body.style.paddingBottom = ((((inputRow?.offsetHeight) || 0) + ((poweredBy?.offsetHeight) || 0)) + 36) + 'px';
+        const bodyStyles = getComputedStyle(document.body);
+        const bodyPadding = parseInt(bodyStyles.paddingTop) + parseInt(bodyStyles.paddingBottom);
+        const baseHeight = parseInt(getComputedStyle(chatBox).height);
+        const maxHeight = baseHeight * 3;
+
+        // STREAMING CHAT FUNCTION
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            addMessage('user', message);
+            chatInput.value = '';
+            sendBtn.disabled = true;
+            chatInput.disabled = true;
+            chatBox.style.height = baseHeight + 'px';
+            chatBox.style.overflowY = 'hidden';
+
+            // Create streaming message container
+            const streamingDiv = document.createElement('div');
+            streamingDiv.className = 'message assistant streaming';
+            streamingDiv.id = 'streaming-message';
+            streamingDiv.innerHTML = '<div class="message-content"></div>';
+            chatBox.appendChild(streamingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            const contentDiv = streamingDiv.querySelector('.message-content');
+            let fullResponse = '';
+
+            try {
+                const response = await fetch('http://localhost:5001/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        message, 
+                        system_prompt: '',
+                        stream: true 
+                    })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            try {
+                                const data = JSON.parse(line.substring(6));
+                                
+                                if (data.error) {
+                                    contentDiv.textContent = 'Error: ' + data.error;
+                                    streamingDiv.classList.remove('streaming');
+                                    break;
+                                }
+                                
+                                if (data.text) {
+                                    fullResponse += data.text;
+                                    contentDiv.innerHTML = marked.parse(fullResponse);
+                                    const contentHeight = chatBox.scrollHeight;
+                                    const newHeight = Math.min(contentHeight, maxHeight);
+                                    chatBox.style.height = newHeight + 'px';
+                                    chatBox.style.overflowY = contentHeight > maxHeight ? 'auto' : 'hidden';
+                                    const totalHeight = newHeight + ((inputRow?.offsetHeight) || 0) + bodyPadding;
+                                    window.parent.postMessage({ type: 'subnexai:resize', height: totalHeight }, '*');
+                                    chatBox.scrollTop = chatBox.scrollHeight;
+                                }
+                                
+                                if (data.done) {
+                                    streamingDiv.classList.remove('streaming');
+                                }
+                            } catch (e) {
+                                console.error('Error parsing SSE:', e);
+                            }
+                        }
+                    }
+                }
+
+            } catch (error) {
+                console.error('Streaming error:', error);
+                const streaming = document.getElementById('streaming-message');
+                if (streaming) {
+                    streaming.querySelector('.message-content').textContent = 'Error: ' + error.message;
+                    streaming.classList.remove('streaming');
+                }
+            } finally {
+                sendBtn.disabled = false;
+                chatInput.disabled = false;
+                chatInput.focus();
+            }
+        }
+
+        function addMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            
+            // Remove empty state if present
+            const emptyState = chatBox.querySelector('.empty-state');
+            if (emptyState) {
+                emptyState.remove();
+            }
+
+            // Render markdown for assistant messages
+            const renderedContent = role === 'assistant' ? marked.parse(content) : content;
+            
+            messageDiv.innerHTML = `<div class="message-content">${renderedContent}</div>`;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // Focus input on load
+        chatInput.focus();
+    </script>
+</body>
+</html>
