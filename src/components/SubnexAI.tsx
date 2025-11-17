@@ -97,6 +97,52 @@ const SubnexAI = () => {
     }
   }
 
+  // Basic formatter: paragraphs and bullet lists with bold (**text**)
+  function renderInline(text: string) {
+    const parts = text.split("**");
+    return parts.map((part, i) =>
+      i % 2 === 1 ? <strong key={`b-${i}`}>{part}</strong> : part
+    );
+  }
+
+  function renderFormatted(text: string) {
+    const lines = text.split(/\r?\n/);
+    const blocks: Array<{ type: "list"; items: string[] } | { type: "paragraph"; text: string }> = [];
+    let list: string[] = [];
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (/^(\*|-)\s+/.test(trimmed)) {
+        list.push(trimmed.replace(/^(\*|-)\s+/, ""));
+      } else {
+        if (list.length) {
+          blocks.push({ type: "list", items: list });
+          list = [];
+        }
+        if (trimmed) {
+          blocks.push({ type: "paragraph", text: trimmed });
+        }
+      }
+    }
+    if (list.length) blocks.push({ type: "list", items: list });
+
+    return (
+      <div className="space-y-2">
+        {blocks.map((b, idx) =>
+          b.type === "list" ? (
+            <ul key={idx} className="list-disc pl-5 space-y-1">
+              {b.items.map((it, j) => (
+                <li key={j}>{renderInline(it)}</li>
+              ))}
+            </ul>
+          ) : (
+            <p key={idx} className="whitespace-pre-wrap">{renderInline(b.text)}</p>
+          )
+        )}
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full px-4">
@@ -127,18 +173,18 @@ const SubnexAI = () => {
                     key={i}
                     className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
                   >
-                    <div
-                      className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                        m.role === "user"
-                          ? "bg-gray-900 text-white"
-                          : "bg-white border border-gray-200 text-gray-900 shadow-sm"
-                      }`}
-                    >
-                      {m.content}
-                      {m.streaming && (
-                        <span className="ml-1 inline-block animate-pulse">▋</span>
-                      )}
-                    </div>
+                  <div
+                    className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                      m.role === "user"
+                        ? "bg-gray-900 text-white"
+                        : "bg-white border border-gray-200 text-gray-900 shadow-sm"
+                    }`}
+                  >
+                    {m.role === "assistant" ? renderFormatted(m.content) : m.content}
+                    {m.streaming && (
+                      <span className="ml-1 inline-block animate-pulse">▋</span>
+                    )}
+                  </div>
                   </div>
                 ))
               )}
