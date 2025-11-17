@@ -9,7 +9,7 @@ import OfferingsSection from "@/components/sections/OfferingsSection";
 import SupportSection from "@/components/sections/SupportSection";
 import CareersSection from "@/components/sections/CareersSection";
 import ContactSection from "@/components/sections/ContactSection";
-import chatUrl from "@/ai/subnexai.html?url";
+import SubnexAI from "@/components/SubnexAI";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -60,15 +60,7 @@ const Index = () => {
       </main>
       
       <Footer />
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
-        <iframe
-          id="subnexai-iframe"
-          src={chatUrl}
-          title="SubNexAI"
-          className="w-[880px] rounded-lg shadow-xl border border-gray-200 bg-white"
-          style={{ height: "180px", transition: "height 0.2s ease" }}
-        />
-      </div>
+      <SubnexAI />
     </div>
   );
 };
