@@ -29,7 +29,7 @@ const SubnexAI = () => {
     setMessages((prev) => [...prev, { role: "assistant", content: "", streaming: true }]);
 
     try {
-      const res = await fetch("http://localhost:5001/chat", {
+      const res = await fetch("https://h39mqkcwve.execute-api.ap-south-1.amazonaws.com/dev/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, system_prompt: "", stream: true }),
