@@ -9,6 +9,7 @@ import OfferingsSection from "@/components/sections/OfferingsSection";
 import SupportSection from "@/components/sections/SupportSection";
 import CareersSection from "@/components/sections/CareersSection";
 import ContactSection from "@/components/sections/ContactSection";
+import FeedbackSection from "@/components/sections/FeedbackSection";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -41,6 +42,7 @@ const Index = () => {
         <OfferingsSection />
         <SupportSection />
         <CareersSection />
+        <FeedbackSection />
         <ContactSection />
       </main>
       
