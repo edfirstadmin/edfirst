@@ -38,7 +38,7 @@ const Index = () => {
       {/* Brochure Button - below header, extreme right */}
       <div className="fixed right-4 top-20 z-40">
         <a
-          href="/lovable-uploads/brochure/Ed_fIRST_Brochure.pdf"
+          href="/edfirst-data/brochure/Ed_fIRST_Brochure.pdf"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open Ed-fIRST Brochure"

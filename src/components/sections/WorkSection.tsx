@@ -4,122 +4,122 @@ import { BookOpen, Users, Award, Target, FileText, Languages } from "lucide-reac
 import { useState } from "react";
 
 const supplementaryImages = [
-  "/lovable-uploads/191a6a71-b3f4-4a0c-9054-320c59dacd8e.png",
-  "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png",
+  "/edfirst-data/191a6a71-b3f4-4a0c-9054-320c59dacd8e.png",
+  "/edfirst-data/298f05da-de21-4e91-9ec0-952064730f0a.png",
 ];
 
 const bilingualImages = [
-  "/lovable-uploads/ed426868-d309-4bcf-a37f-a4f4e6ab601c.png",
-  "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png"
+  "/edfirst-data/ed426868-d309-4bcf-a37f-a4f4e6ab601c.png",
+  "/edfirst-data/298f05da-de21-4e91-9ec0-952064730f0a.png"
 ];
 
 const awarenessImages = [
-  "/lovable-uploads/awareness/awareness_1.png",
-  "/lovable-uploads/awareness/awareness_2.png",
-  "/lovable-uploads/awareness/awareness_3.png",
-  "/lovable-uploads/awareness/awareness_4.png",
-  "/lovable-uploads/awareness/awareness_5.png",
-  "/lovable-uploads/awareness/awareness_6.png",
-  "/lovable-uploads/awareness/awareness_7.png", 
-  "/lovable-uploads/awareness/awareness_8.png",
-  "/lovable-uploads/awareness/awareness_9.png",
-  "/lovable-uploads/awareness/awareness_10.png",
-  "/lovable-uploads/awareness/awareness_11.png",
-  "/lovable-uploads/awareness/awareness_12.png",
-  "/lovable-uploads/awareness/awareness_13.png",
-  "/lovable-uploads/awareness/awareness_14.png",
-  "/lovable-uploads/awareness/awareness_15.png",
-  "/lovable-uploads/awareness/awareness_16.png",
-  "/lovable-uploads/awareness/awareness_17.png",
-  "/lovable-uploads/awareness/awareness_18.png",
-  "/lovable-uploads/awareness/awareness_19.png",
-  "/lovable-uploads/awareness/awareness_20.png"
+  "/edfirst-data/awareness/awareness_1.png",
+  "/edfirst-data/awareness/awareness_2.png",
+  "/edfirst-data/awareness/awareness_3.png",
+  "/edfirst-data/awareness/awareness_4.png",
+  "/edfirst-data/awareness/awareness_5.png",
+  "/edfirst-data/awareness/awareness_6.png",
+  "/edfirst-data/awareness/awareness_7.png", 
+  "/edfirst-data/awareness/awareness_8.png",
+  "/edfirst-data/awareness/awareness_9.png",
+  "/edfirst-data/awareness/awareness_10.png",
+  "/edfirst-data/awareness/awareness_11.png",
+  "/edfirst-data/awareness/awareness_12.png",
+  "/edfirst-data/awareness/awareness_13.png",
+  "/edfirst-data/awareness/awareness_14.png",
+  "/edfirst-data/awareness/awareness_15.png",
+  "/edfirst-data/awareness/awareness_16.png",
+  "/edfirst-data/awareness/awareness_17.png",
+  "/edfirst-data/awareness/awareness_18.png",
+  "/edfirst-data/awareness/awareness_19.png",
+  "/edfirst-data/awareness/awareness_20.png"
 ];
 
 const lecImages = [
-  "/lovable-uploads/lec/lec_7.png",
-  "/lovable-uploads/lec/lec_8.png",
-  "/lovable-uploads/lec/lec_9.png",
-  "/lovable-uploads/lec/lec_1.png",
-  "/lovable-uploads/lec/lec_2.png",
-  "/lovable-uploads/lec/lec_3.png",
-  "/lovable-uploads/lec/lec_4.png",
-  "/lovable-uploads/lec/lec_5.png",
-  "/lovable-uploads/lec/lec_6.png",
+  "/edfirst-data/lec/lec_7.png",
+  "/edfirst-data/lec/lec_8.png",
+  "/edfirst-data/lec/lec_9.png",
+  "/edfirst-data/lec/lec_1.png",
+  "/edfirst-data/lec/lec_2.png",
+  "/edfirst-data/lec/lec_3.png",
+  "/edfirst-data/lec/lec_4.png",
+  "/edfirst-data/lec/lec_5.png",
+  "/edfirst-data/lec/lec_6.png",
 ];
 
 // Add pedagogical images array
 const pedagogicalImages = [
-  "/lovable-uploads/pedagogical/pedagogical_1.png",
-  "/lovable-uploads/pedagogical/pedagogical_2.png",
-  "/lovable-uploads/pedagogical/pedagogical_3.png",
-  "/lovable-uploads/pedagogical/pedagogical_4.png",
-  "/lovable-uploads/pedagogical/pedagogical_5.png",
-  "/lovable-uploads/pedagogical/pedagogical_6.png",
-  "/lovable-uploads/pedagogical/pedagogical_7.png",
-  "/lovable-uploads/pedagogical/pedagogical_8.png",
-  "/lovable-uploads/pedagogical/pedagogical_9.png", 
-  "/lovable-uploads/pedagogical/pedagogical_10.png",
-  "/lovable-uploads/pedagogical/pedagogical_11.png", 
-  "/lovable-uploads/pedagogical/pedagogical_12.png",
-  "/lovable-uploads/pedagogical/pedagogical_13.png",
-  "/lovable-uploads/pedagogical/pedagogical_14.png",
-  "/lovable-uploads/pedagogical/pedagogical_15.png",
-  "/lovable-uploads/pedagogical/pedagogical_16.png",
-  "/lovable-uploads/pedagogical/pedagogical_17.png",
-  "/lovable-uploads/pedagogical/pedagogical_18.png",
-  "/lovable-uploads/pedagogical/pedagogical_19.png",
-  "/lovable-uploads/pedagogical/pedagogical_20.png",
-  "/lovable-uploads/pedagogical/pedagogical_21.png",
-  "/lovable-uploads/pedagogical/pedagogical_22.png",
-  "/lovable-uploads/pedagogical/pedagogical_23.png",
-  "/lovable-uploads/pedagogical/pedagogical_24.png",
-  "/lovable-uploads/pedagogical/pedagogical_25.png",
-  "/lovable-uploads/pedagogical/pedagogical_26.png",
-  "/lovable-uploads/pedagogical/pedagogical_27.png",
-  "/lovable-uploads/pedagogical/pedagogical_28.png",
-  "/lovable-uploads/pedagogical/pedagogical_29.png",
-  "/lovable-uploads/pedagogical/pedagogical_30.png"
+  "/edfirst-data/pedagogical/pedagogical_1.png",
+  "/edfirst-data/pedagogical/pedagogical_2.png",
+  "/edfirst-data/pedagogical/pedagogical_3.png",
+  "/edfirst-data/pedagogical/pedagogical_4.png",
+  "/edfirst-data/pedagogical/pedagogical_5.png",
+  "/edfirst-data/pedagogical/pedagogical_6.png",
+  "/edfirst-data/pedagogical/pedagogical_7.png",
+  "/edfirst-data/pedagogical/pedagogical_8.png",
+  "/edfirst-data/pedagogical/pedagogical_9.png", 
+  "/edfirst-data/pedagogical/pedagogical_10.png",
+  "/edfirst-data/pedagogical/pedagogical_11.png", 
+  "/edfirst-data/pedagogical/pedagogical_12.png",
+  "/edfirst-data/pedagogical/pedagogical_13.png",
+  "/edfirst-data/pedagogical/pedagogical_14.png",
+  "/edfirst-data/pedagogical/pedagogical_15.png",
+  "/edfirst-data/pedagogical/pedagogical_16.png",
+  "/edfirst-data/pedagogical/pedagogical_17.png",
+  "/edfirst-data/pedagogical/pedagogical_18.png",
+  "/edfirst-data/pedagogical/pedagogical_19.png",
+  "/edfirst-data/pedagogical/pedagogical_20.png",
+  "/edfirst-data/pedagogical/pedagogical_21.png",
+  "/edfirst-data/pedagogical/pedagogical_22.png",
+  "/edfirst-data/pedagogical/pedagogical_23.png",
+  "/edfirst-data/pedagogical/pedagogical_24.png",
+  "/edfirst-data/pedagogical/pedagogical_25.png",
+  "/edfirst-data/pedagogical/pedagogical_26.png",
+  "/edfirst-data/pedagogical/pedagogical_27.png",
+  "/edfirst-data/pedagogical/pedagogical_28.png",
+  "/edfirst-data/pedagogical/pedagogical_29.png",
+  "/edfirst-data/pedagogical/pedagogical_30.png"
 ];
 
 const trainingImages = [
-  "/lovable-uploads/training/training_1.png",
-  "/lovable-uploads/training/training_2.png",
-  "/lovable-uploads/training/training_3.png",
-  "/lovable-uploads/training/training_4.png",
-  "/lovable-uploads/training/training_5.png",
-  "/lovable-uploads/training/training_6.png",
-  "/lovable-uploads/training/training_7.png",
-  "/lovable-uploads/training/training_8.png",
-  "/lovable-uploads/training/training_9.png",
-  "/lovable-uploads/training/training_10.png",
-  "/lovable-uploads/training/training_11.png",
-  "/lovable-uploads/training/training_12.png",
-  "/lovable-uploads/training/training_13.png"
+  "/edfirst-data/training/training_1.png",
+  "/edfirst-data/training/training_2.png",
+  "/edfirst-data/training/training_3.png",
+  "/edfirst-data/training/training_4.png",
+  "/edfirst-data/training/training_5.png",
+  "/edfirst-data/training/training_6.png",
+  "/edfirst-data/training/training_7.png",
+  "/edfirst-data/training/training_8.png",
+  "/edfirst-data/training/training_9.png",
+  "/edfirst-data/training/training_10.png",
+  "/edfirst-data/training/training_11.png",
+  "/edfirst-data/training/training_12.png",
+  "/edfirst-data/training/training_13.png"
 ];
 
 const trainerImages = [
-  "/lovable-uploads/trainer/trainer_1.png",
-  "/lovable-uploads/trainer/trainer_2.png",
-  "/lovable-uploads/trainer/trainer_3.png", 
-  "/lovable-uploads/trainer/trainer_4.png",
-  "/lovable-uploads/trainer/trainer_5.png",
-  "/lovable-uploads/trainer/trainer_6.png",
-  "/lovable-uploads/trainer/trainer_7.png",
-  "/lovable-uploads/trainer/trainer_8.png",
-  "/lovable-uploads/trainer/trainer_9.png"
+  "/edfirst-data/trainer/trainer_1.png",
+  "/edfirst-data/trainer/trainer_2.png",
+  "/edfirst-data/trainer/trainer_3.png", 
+  "/edfirst-data/trainer/trainer_4.png",
+  "/edfirst-data/trainer/trainer_5.png",
+  "/edfirst-data/trainer/trainer_6.png",
+  "/edfirst-data/trainer/trainer_7.png",
+  "/edfirst-data/trainer/trainer_8.png",
+  "/edfirst-data/trainer/trainer_9.png"
 ];
 
 const bilingualGalleryImages = [
-  "/lovable-uploads/bilingual_books/bb1.png",
-  "/lovable-uploads/bilingual_books/bb2.png",
-  "/lovable-uploads/bilingual_books/bb3.png"
+  "/edfirst-data/bilingual_books/bb1.png",
+  "/edfirst-data/bilingual_books/bb2.png",
+  "/edfirst-data/bilingual_books/bb3.png"
 ];
 
 const supplementaryBooksGalleryImages = [
-  "/lovable-uploads/supplementary_books/sb1.png",
-  "/lovable-uploads/supplementary_books/sb2.png",
-  "/lovable-uploads/supplementary_books/sb3.png"
+  "/edfirst-data/supplementary_books/sb1.png",
+  "/edfirst-data/supplementary_books/sb2.png",
+  "/edfirst-data/supplementary_books/sb3.png"
   // Add more images as needed
 ];
 
@@ -132,7 +132,7 @@ const WorkSection = () => {
       items: [
         {
           name: "Awareness Raising Workshop on Effective Pedagogical and Assessment Practices",
-          image: "/lovable-uploads/3a9aa7e1-cbdd-47bf-9dbe-b6a5a868292c.png",
+          image: "/edfirst-data/3a9aa7e1-cbdd-47bf-9dbe-b6a5a868292c.png",
           description: "Comprehensive workshops focused on improving teaching methodologies and assessment strategies"
         },
         {
@@ -141,7 +141,7 @@ const WorkSection = () => {
         },
         {
           name: "In-Service Teacher Training for Secondary Classes",
-          image: "/lovable-uploads/381fa553-4f73-4334-b540-fe3b65517d1a.png",
+          image: "/edfirst-data/381fa553-4f73-4334-b540-fe3b65517d1a.png",
           description: "Professional development programs for secondary school educators"
         }
       ]
@@ -153,7 +153,7 @@ const WorkSection = () => {
       items: [
         {
           name: "Master Trainer Workshop on Achieving Learning Outcomes at Preparatory and Middle Level",
-          image: "/lovable-uploads/108ebe96-ca48-4854-bd44-03c1ce3d208e.png",
+          image: "/edfirst-data/108ebe96-ca48-4854-bd44-03c1ce3d208e.png",
           description: "Advanced training for education leaders and master trainers"
         },
         {
@@ -169,17 +169,17 @@ const WorkSection = () => {
       items: [
         {
           name: "Science for Little Learners",
-          image: "/lovable-uploads/ed426868-d309-4bcf-a37f-a4f4e6ab601c.png",
+          image: "/edfirst-data/ed426868-d309-4bcf-a37f-a4f4e6ab601c.png",
           description: "Engaging science curriculum designed for young learners"
         },
         {
           name: "Fun with Grammar",
-          image: "/lovable-uploads/191a6a71-b3f4-4a0c-9054-320c59dacd8e.png", 
+          image: "/edfirst-data/191a6a71-b3f4-4a0c-9054-320c59dacd8e.png", 
           description: "Interactive grammar learning materials for Grade 4 students"
         },
         {
           name: "Word Search Activities",
-          image: "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png",
+          image: "/edfirst-data/298f05da-de21-4e91-9ec0-952064730f0a.png",
           description: "Level-1 word search puzzles for vocabulary development"
         }
       ]

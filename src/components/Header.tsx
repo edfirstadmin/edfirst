@@ -30,7 +30,7 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
           {/* Logo */}
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/logo.png" 
+              src="/edfirst-data/logo.png" 
               alt="Ed-fIRST Logo" 
               className="w-24 h-24 object-contain"
             />

@@ -3,8 +3,8 @@ import { Mail, Phone, MapPin, Instagram, Facebook, Twitter, Heart } from "lucide
 import { useState } from "react";
 
 const supplementaryImages = [
-  "/lovable-uploads/191a6a71-b3f4-4a0c-9054-320c59dacd8e.png",
-  "/lovable-uploads/298f05da-de21-4e91-9ec0-952064730f0a.png",
+  "/edfirst-data/191a6a71-b3f4-4a0c-9054-320c59dacd8e.png",
+  "/edfirst-data/298f05da-de21-4e91-9ec0-952064730f0a.png",
 ];
 
 const Footer = () => {
@@ -46,7 +46,7 @@ const Footer = () => {
               <div>
                 <div className="flex items-center mb-4">
                   <img 
-                      src="/lovable-uploads/logo.png" 
+                      src="/edfirst-data/logo.png" 
                       alt="Ed-fIRST Logo" 
                       className="w-28 h-28 object-contain"
                     />

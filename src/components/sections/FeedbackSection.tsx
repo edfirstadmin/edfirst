@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const feedbackImages = [
-  "/lovable-uploads/feedback/feedback_1.png",
-  "/lovable-uploads/feedback/feedback_2.png",
-  "/lovable-uploads/feedback/feedback_3.png",
-  "/lovable-uploads/feedback/feedback_4.png",
-  "/lovable-uploads/feedback/feedback_5.png",
-  "/lovable-uploads/feedback/feedback_6.png",
-  "/lovable-uploads/feedback/feedback_7.png",
+  "/edfirst-data/feedback/feedback_1.png",
+  "/edfirst-data/feedback/feedback_2.png",
+  "/edfirst-data/feedback/feedback_3.png",
+  "/edfirst-data/feedback/feedback_4.png",
+  "/edfirst-data/feedback/feedback_5.png",
+  "/edfirst-data/feedback/feedback_6.png",
+  "/edfirst-data/feedback/feedback_7.png",
 ];
 
 const FeedbackSection = () => {
