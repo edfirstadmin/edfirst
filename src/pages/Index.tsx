@@ -10,6 +10,8 @@ import SupportSection from "@/components/sections/SupportSection";
 import CareersSection from "@/components/sections/CareersSection";
 import ContactSection from "@/components/sections/ContactSection";
 import FeedbackSection from "@/components/sections/FeedbackSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import RegistrationSection from "@/components/sections/RegistrationSection";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 
@@ -59,6 +61,8 @@ const Index = () => {
         <SupportSection />
         <CareersSection />
         <FeedbackSection />
+        <TestimonialsSection />
+        <RegistrationSection />
         <ContactSection />
       </main>
       

@@ -20,6 +20,8 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
     { id: "support", label: "Support" },
     { id: "careers", label: "Careers" },
     { id: "feedback", label: "Feedback" },
+    { id: "testimonials", label: "Testimonials" },
+    { id: "registration", label: "Registration Certifications/Partner" },
     { id: "contact", label: "Contact" },
   ];
 
