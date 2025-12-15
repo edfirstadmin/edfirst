@@ -1,7 +1,20 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Menu, X } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 interface HeaderProps {
   activeSection: string;
@@ -11,17 +24,20 @@ interface HeaderProps {
 const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navigationItems = [
+  const topLevelItems = [
     { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "advisory", label: "Advisory Board" },
     { id: "work", label: "Our Work" },
     { id: "offerings", label: "Offerings" },
-    { id: "support", label: "Support" },
-    { id: "careers", label: "Careers" },
     { id: "feedback", label: "Feedback" },
     { id: "testimonials", label: "Testimonials" },
     { id: "registration", label: "Registration Certifications/Partner" },
+  ];
+
+  const aboutUsItems = [
+    { id: "about", label: "About" },
+    { id: "advisory", label: "Advisory Board" },
+    { id: "support", label: "Support" },
+    { id: "careers", label: "Careers" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -40,19 +56,49 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center">
-            <Tabs value={activeSection} onValueChange={onSectionChange}>
-              <TabsList className="bg-muted/50 p-1">
-                {navigationItems.map((item) => (
-                  <TabsTrigger 
-                    key={item.id} 
-                    value={item.id}
-                    className="text-sm px-3 py-1.5 data-[state=active]:bg-background data-[state=active]:text-foreground"
-                  >
-                    {item.label}
-                  </TabsTrigger>
+            <NavigationMenu>
+              <NavigationMenuList>
+                {/* Other top-level items */}
+                {topLevelItems.map((item) => (
+                  <NavigationMenuItem key={item.id}>
+                    <Button
+                      variant={activeSection === item.id ? "default" : "ghost"}
+                      className="text-sm px-3 py-1.5"
+                      onClick={() => onSectionChange(item.id)}
+                    >
+                      {item.label}
+                    </Button>
+                  </NavigationMenuItem>
                 ))}
-              </TabsList>
-            </Tabs>
+
+                {/* About Us dropdown - positioned at the end and anchored under trigger */}
+                <NavigationMenuItem>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button className="text-sm px-3 py-1.5 group" variant="ghost">
+                        About Us
+                        <ChevronDown className="ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent side="bottom" align="end" className="p-3">
+                      <div className="space-y-2.5">
+                        {aboutUsItems.map((item) => (
+                          <DropdownMenuItem key={item.id} asChild>
+                            <Button
+                              variant={activeSection === item.id ? "default" : "ghost"}
+                              className="w-full justify-start py-2"
+                              onClick={() => onSectionChange(item.id)}
+                            >
+                              {item.label}
+                            </Button>
+                          </DropdownMenuItem>
+                        ))}
+                      </div>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -70,7 +116,8 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 border-t animate-fade-in">
             <nav className="grid gap-2">
-              {navigationItems.map((item) => (
+              {/* Other top-level items */}
+              {topLevelItems.map((item) => (
                 <Button
                   key={item.id}
                   variant={activeSection === item.id ? "default" : "ghost"}
@@ -83,6 +130,26 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
                   {item.label}
                 </Button>
               ))}
+
+              {/* About Us group - positioned at the end */}
+              <div>
+                <div className="text-sm font-medium text-muted-foreground px-2 py-1">
+                  About Us
+                </div>
+                {aboutUsItems.map((item) => (
+                  <Button
+                    key={item.id}
+                    variant={activeSection === item.id ? "default" : "ghost"}
+                    onClick={() => {
+                      onSectionChange(item.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="justify-start"
+                  >
+                    {item.label}
+                  </Button>
+                ))}
+              </div>
             </nav>
           </div>
         )}
