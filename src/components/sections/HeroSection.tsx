@@ -7,7 +7,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-20 h-20 bg-accent rounded-full animate-pulse"></div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
@@ -17,22 +17,124 @@ import { FileText } from "lucide-react";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [isProgrammaticScroll, setIsProgrammaticScroll] = useState(false);
 
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
+    setIsProgrammaticScroll(true);
     
     // Smooth scroll to section
+    const headerHeight = 80; // Approximate header height
     if (section === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       const element = document.getElementById(section);
       if (element) {
-        const headerHeight = 80; // Approximate header height
-        const elementPosition = element.offsetTop - headerHeight;
-        window.scrollTo({ top: elementPosition, behavior: "smooth" });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Adjust for sticky header after initial scroll
+        setTimeout(() => {
+          window.scrollBy({ top: -headerHeight, left: 0, behavior: "instant" as ScrollBehavior });
+        }, 180);
       }
     }
+    // Release programmatic state after scroll
+    setTimeout(() => setIsProgrammaticScroll(false), 800);
   };
+
+  useEffect(() => {
+    const headerHeight = 80;
+    const sectionIds = [
+      "home",
+      "about",
+      "advisory",
+      "work",
+      "offerings",
+      "support",
+      "careers",
+      "feedback",
+      "testimonials",
+      "registration",
+      "contact",
+    ];
+
+    const elements = sectionIds
+      .map((id) => ({ id, el: document.getElementById(id) }))
+      .filter((x): x is { id: string; el: HTMLElement } => Boolean(x.el));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isProgrammaticScroll) return;
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target) {
+          const id = visible.target.id;
+          if (id && id !== activeSection) {
+            setActiveSection(id);
+          }
+        }
+      },
+      {
+        root: null,
+        rootMargin: `-${headerHeight}px 0px -40% 0px`,
+        threshold: [0.3, 0.5, 0.7],
+      }
+    );
+
+    elements.forEach(({ el }) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [activeSection, isProgrammaticScroll]);
+
+  // Fallback scroll spy using scroll position
+  useEffect(() => {
+    const headerHeight = 80;
+    const sectionIds = [
+      "home",
+      "about",
+      "advisory",
+      "work",
+      "offerings",
+      "support",
+      "careers",
+      "feedback",
+      "testimonials",
+      "registration",
+      "contact",
+    ];
+
+    let ticking = false;
+
+    const computeActive = () => {
+      const pos = window.scrollY + headerHeight + 10;
+      let current = "home";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= pos) {
+          current = id;
+        }
+      }
+      if (!isProgrammaticScroll && current !== activeSection) {
+        setActiveSection(current);
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(computeActive);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    // Initialize on mount
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [activeSection, isProgrammaticScroll]);
 
   return (
     <div className="min-h-screen bg-background">
