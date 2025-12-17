@@ -61,15 +61,13 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
                 {/* Other top-level items */}
                 {topLevelItems.map((item) => (
                   <NavigationMenuItem key={item.id}>
-                    <NavigationMenuLink asChild>
-                      <Button
-                        variant={activeSection === item.id ? "default" : "ghost"}
-                        className="text-sm px-3 py-1.5"
-                        onClick={() => onSectionChange(item.id)}
-                      >
-                        {item.label}
-                      </Button>
-                    </NavigationMenuLink>
+                    <Button
+                      variant={activeSection === item.id ? "default" : "ghost"}
+                      className="text-sm px-3 py-1.5"
+                      onClick={() => onSectionChange(item.id)}
+                    >
+                      {item.label}
+                    </Button>
                   </NavigationMenuItem>
                 ))}
 
@@ -77,10 +75,7 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
                 <NavigationMenuItem>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button
-                        className="text-sm px-3 py-1.5 group"
-                        variant={aboutUsItems.some((i) => i.id === activeSection) ? "default" : "ghost"}
-                      >
+                      <Button className="text-sm px-3 py-1.5 group" variant="ghost">
                         About Us
                         <ChevronDown className="ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" />
                       </Button>
