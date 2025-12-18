@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
@@ -33,6 +33,60 @@ const Index = () => {
       }
     }
   };
+
+  // Highlight header tab based on the section in view while scrolling
+  useEffect(() => {
+    const headerHeight = 80;
+    const sectionIds = [
+      "home",
+      "about",
+      "advisory",
+      "work",
+      "offerings",
+      "support",
+      "careers",
+      "feedback",
+      "testimonials",
+      "registration",
+      "contact",
+    ];
+
+    let ticking = false;
+
+    const computeActive = () => {
+      let current = "home";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        const topWithinHeader = rect.top <= headerHeight + 12;
+        const stillVisible = rect.bottom > headerHeight + 12;
+        if (topWithinHeader && stillVisible) {
+          current = id;
+        }
+      }
+      if (current !== activeSection) {
+        setActiveSection(current);
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(computeActive);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    // Initialize on mount
+    computeActive();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [activeSection]);
 
   return (
     <div className="min-h-screen bg-background">
