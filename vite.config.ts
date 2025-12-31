@@ -8,6 +8,15 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      "/api/offerings.xlsx": {
+        target: "https://edfirstadmin-my.sharepoint.com",
+        changeOrigin: true,
+        secure: true,
+        rewrite: () =>
+          "/:x:/g/personal/admin_edfirst_in/IQCu2RUdpZBPQpgPaUCSoQNWAUpOWYPNfVEARX-dshwey9I?download=1",
+      },
+    },
   },
   plugins: [
     react(),
