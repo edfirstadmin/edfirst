@@ -228,7 +228,7 @@ const WorkSection = () => {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6">Our Work</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6">What We Do?</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Comprehensive programs and resources driving educational excellence across all levels
           </p>

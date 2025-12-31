@@ -26,8 +26,8 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
 
   const topLevelItems = [
     { id: "home", label: "Home" },
-    { id: "work", label: "Our Work" },
-    { id: "offerings", label: "Offerings" },
+    { id: "work", label: "What We Do?" },
+    { id: "offerings", label: "Our Programs" },
     { id: "feedback", label: "Feedback" },
     { id: "testimonials", label: "Testimonials" },
     { id: "registration", label: "Registration Certifications/Partner" },

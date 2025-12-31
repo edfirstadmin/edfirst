@@ -22,7 +22,7 @@ const OfferingsSection = () => {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6">Our Offerings</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6">Our Programs</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Comprehensive educational solutions designed to transform learning outcomes and 
             strengthen educational systems through evidence-based approaches
