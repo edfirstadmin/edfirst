@@ -27,9 +27,9 @@ const ContactSection = () => {
   ];
 
   const socialMedia = [
-    { name: "Instagram", icon: Instagram, href: "#", color: "from-pink-500 to-purple-500" },
-    { name: "Facebook", icon: Facebook, href: "#", color: "from-blue-600 to-blue-700" },
-    { name: "X (Twitter)", icon: Twitter, href: "#", color: "from-gray-800 to-black" }
+    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/edfirstindia", color: "from-blue-600 to-blue-700" },
+    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/edfirstindia", color: "from-pink-500 to-purple-500" },
+    { name: "X (Twitter)", icon: Twitter, href: "https://x.com/edfirstindia", color: "from-gray-800 to-black" }
   ];
 
   return (

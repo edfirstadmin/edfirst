@@ -28,9 +28,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: "Instagram", icon: Instagram, href: "#" },
-    { name: "Facebook", icon: Facebook, href: "#" },
-    { name: "X (Twitter)", icon: Twitter, href: "#" }
+    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/edfirstindia" },
+    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/edfirstindia" },
+    { name: "X (Twitter)", icon: Twitter, href: "https://x.com/edfirstindia" }
   ];
 
   const [galleryOpen, setGalleryOpen] = useState(false);
