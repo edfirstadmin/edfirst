@@ -25,7 +25,6 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const topLevelItems = [
-    { id: "home", label: "Home" },
     { id: "work", label: "What We Do?" },
     { id: "offerings", label: "Our Programs" },
     { id: "feedback", label: "Feedback" },
@@ -58,20 +57,18 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
           <nav className="hidden lg:flex items-center">
             <NavigationMenu>
               <NavigationMenuList>
-                {/* Other top-level items */}
-                {topLevelItems.map((item) => (
-                  <NavigationMenuItem key={item.id}>
-                    <Button
-                      variant={activeSection === item.id ? "default" : "ghost"}
-                      className="text-sm px-3 py-1.5"
-                      onClick={() => onSectionChange(item.id)}
-                    >
-                      {item.label}
-                    </Button>
-                  </NavigationMenuItem>
-                ))}
+                {/* Home Item */}
+                <NavigationMenuItem>
+                  <Button
+                    variant={activeSection === "home" ? "default" : "ghost"}
+                    className="text-sm px-3 py-1.5"
+                    onClick={() => onSectionChange("home")}
+                  >
+                    Home
+                  </Button>
+                </NavigationMenuItem>
 
-                {/* About Us dropdown - positioned at the end and anchored under trigger */}
+                {/* About Us dropdown */}
                 <NavigationMenuItem>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -97,6 +94,19 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </NavigationMenuItem>
+
+                {/* Other top-level items */}
+                {topLevelItems.map((item) => (
+                  <NavigationMenuItem key={item.id}>
+                    <Button
+                      variant={activeSection === item.id ? "default" : "ghost"}
+                      className="text-sm px-3 py-1.5"
+                      onClick={() => onSectionChange(item.id)}
+                    >
+                      {item.label}
+                    </Button>
+                  </NavigationMenuItem>
+                ))}
               </NavigationMenuList>
             </NavigationMenu>
           </nav>
@@ -116,22 +126,19 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 border-t animate-fade-in">
             <nav className="grid gap-2">
-              {/* Other top-level items */}
-              {topLevelItems.map((item) => (
-                <Button
-                  key={item.id}
-                  variant={activeSection === item.id ? "default" : "ghost"}
-                  onClick={() => {
-                    onSectionChange(item.id);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="justify-start"
-                >
-                  {item.label}
-                </Button>
-              ))}
+              {/* Home Button */}
+              <Button
+                variant={activeSection === "home" ? "default" : "ghost"}
+                onClick={() => {
+                  onSectionChange("home");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="justify-start"
+              >
+                Home
+              </Button>
 
-              {/* About Us group - positioned at the end */}
+              {/* About Us group */}
               <div>
                 <div className="text-sm font-medium text-muted-foreground px-2 py-1">
                   About Us
@@ -150,6 +157,21 @@ const Header = ({ activeSection, onSectionChange }: HeaderProps) => {
                   </Button>
                 ))}
               </div>
+
+              {/* Other top-level items */}
+              {topLevelItems.map((item) => (
+                <Button
+                  key={item.id}
+                  variant={activeSection === item.id ? "default" : "ghost"}
+                  onClick={() => {
+                    onSectionChange(item.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="justify-start"
+                >
+                  {item.label}
+                </Button>
+              ))}
             </nav>
           </div>
         )}
