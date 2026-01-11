@@ -44,97 +44,9 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8 animate-fade-up">
-            <Card className="shadow-medium border-0 bg-gradient-to-br from-white to-primary-light/5">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-primary mb-8">Get in Touch</h3>
-                
-                <div className="space-y-6">
-                  {contactInfo.map((info, index) => {
-                    const IconComponent = info.icon;
-                    return (
-                      <div key={index} className="flex items-start space-x-4 group">
-                        <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
-                          <IconComponent className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-primary mb-1">{info.title}</h4>
-                          {info.action ? (
-                            <a 
-                              href={info.action}
-                              className="text-muted-foreground hover:text-primary transition-colors leading-relaxed"
-                            >
-                              {info.detail}
-                            </a>
-                          ) : (
-                            <p className="text-muted-foreground leading-relaxed">{info.detail}</p>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Social Media */}
-            <Card className="shadow-medium border-0 bg-gradient-to-br from-white to-secondary-light/5">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-primary mb-6">Follow Us</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Stay connected and get the latest updates on our educational innovations
-                </p>
-                
-                <div className="flex space-x-4">
-                  {socialMedia.map((social, index) => {
-                    const IconComponent = social.icon;
-                    return (
-                      <a
-                        key={index}
-                        href={social.href}
-                        className="group relative"
-                        aria-label={social.name}
-                      >
-                        <div className={`w-12 h-12 bg-gradient-to-br ${social.color} rounded-lg flex items-center justify-center shadow-medium group-hover:shadow-strong group-hover:scale-110 transition-all duration-200`}>
-                          <IconComponent className="w-6 h-6 text-white" />
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Quick Stats */}
-            <Card className="shadow-medium border-0 bg-gradient-to-br from-accent-light/10 to-white">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-primary mb-6">Why Choose Ed-fIRST?</h3>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">10K+</div>
-                    <div className="text-muted-foreground text-sm">Educators Trained</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-secondary mb-2">500+</div>
-                    <div className="text-muted-foreground text-sm">Programs Delivered</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-educational-blue mb-2">AI-First</div>
-                    <div className="text-muted-foreground text-sm">Innovation Approach</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-accent mb-2">100%</div>
-                    <div className="text-muted-foreground text-sm">Commitment</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
+        <div className="max-w-2xl mx-auto">
           {/* Contact Form */}
-          <div className="animate-fade-up" style={{ animationDelay: "200ms" }}>
+          <div className="animate-fade-up">
             <Card className="shadow-strong border-0 bg-gradient-to-br from-white to-accent-light/5">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-primary mb-6">Send us a Message</h3>
