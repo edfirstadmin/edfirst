@@ -86,7 +86,7 @@ const OfferingsSection = () => {
               className="group border-primary/20 hover:bg-primary/5 text-primary"
               onClick={() => navigate('/offerings')}
             >
-              More Programs
+              More Offerings
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>

@@ -62,7 +62,7 @@ const OfferingsPage = () => {
       <main className="pt-24 pb-20">
          <div className="container mx-auto px-4 lg:px-8">
             <div className="text-center mb-16 animate-fade-up">
-                <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-6">All Programs</h1>
+                <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-6">All Offerings</h1>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                     Explore our complete range of educational programs
                 </p>
