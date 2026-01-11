@@ -8,6 +8,7 @@ const registrationImages = [
   "/edfirst-data/registration/registration_2.png",
   "/edfirst-data/registration/registration_3.png",
   "/edfirst-data/registration/registration_4.png",
+  "/edfirst-data/registration/registration_5.png",
 ];
 
 const RegistrationSection = () => {
